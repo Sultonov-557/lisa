@@ -17,7 +17,7 @@ fs.watchFile(__dirname + "/data.json", () => {
 			}
 		}
 
-		lisa.train();
+		lisa.retrain();
 	} catch {}
 });
 
