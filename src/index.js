@@ -42,6 +42,8 @@ function ask(text) {
 		.join("")
 		.toLowerCase();
 
+	if (text == "" || text == " ") return "bosh";
+
 	return lisa.getClassifications(text);
 }
 
