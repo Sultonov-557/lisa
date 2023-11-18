@@ -49,7 +49,7 @@ function ask(text) {
 
 	if (text == "" || text == " ") return "bosh";
 
-	return lisa.getClassifications(text);
+	return lisa.classify(text);
 }
 
 module.exports = { ask, addWord };
