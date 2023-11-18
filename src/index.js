@@ -29,6 +29,11 @@ for (let label in data) {
 
 lisa.train();
 
+function addWord(label, value) {
+	data[label] = value;
+	fs.writeFileSync(__dirname + "/data.json", JSON.stringify(data, null, 4));
+}
+
 function ask(text) {
 	text = text
 		.split("")
@@ -47,4 +52,4 @@ function ask(text) {
 	return lisa.getClassifications(text);
 }
 
-module.exports = { ask };
+module.exports = { ask, addWord };
