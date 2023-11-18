@@ -30,7 +30,7 @@ for (let label in data) {
 lisa.train();
 
 function addWord(label, value) {
-	data[label] = value;
+	data[label].push(value);
 	fs.writeFileSync(__dirname + "/data.json", JSON.stringify(data, null, 4));
 }
 
