@@ -1,55 +1,33 @@
 const { BayesClassifier } = require("natural");
-const fs = require("fs");
-
-let data = JSON.parse(fs.readFileSync(__dirname + "/data.json").toString());
+const db = require("./db/db");
 
 const lisa = new BayesClassifier();
 
-fs.watchFile(__dirname + "/data.json", () => {
-	try {
-		data = JSON.parse(fs.readFileSync(__dirname + "/data.json").toString());
-
-		lisa.docs = [];
-
-		for (let label in data) {
-			for (let value of data[label]) {
-				lisa.addDocument(value, label);
-			}
-		}
-
-		lisa.train();
-	} catch {}
-});
-
-for (let label in data) {
-	for (let value of data[label]) {
-		lisa.addDocument(value, label);
+db.onreload = () => {
+	for (let i of db.getData()) {
+		lisa.addDocument(i.value, i.label);
 	}
-}
+	lisa.retrain();
+};
 
+db.onreload();
 lisa.train();
 
-function addWord(label, value) {
-	data[label].push(value);
-	fs.writeFileSync(__dirname + "/data.json", JSON.stringify(data, null, 4));
+function classify(text, userID) {
+	text = text.split("");
+	text = text.filter((v) => {
+		if (v.toLowerCase() == v.toUpperCase() && isNaN(+v) && ![".", "?"].includes(v)) {
+			return false;
+		} else {
+			return true;
+		}
+	});
+	text = text.join("");
+
+	const type = lisa.classify(text);
+
+	const classification = { type, text };
+	return classification;
 }
 
-function ask(text) {
-	text = text
-		.split("")
-		.filter((v) => {
-			if (v.toLowerCase() == v.toUpperCase() && v != " " && v != ":" && v != "?" && isNaN(+v)) {
-				return false;
-			} else {
-				return true;
-			}
-		})
-		.join("")
-		.toLowerCase();
-
-	if (text == "" || text == " ") return "bosh";
-
-	return lisa.classify(text);
-}
-
-module.exports = { ask, addWord };
+module.exports = { classify };
