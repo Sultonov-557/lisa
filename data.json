@@ -1,0 +1,49 @@
+{
+	"uz": {
+		"words": {
+			"None": { "input": [], "output": ["Kechirasz, men bunga chunmadim."] },
+			"thanks": { "input": ["rahmat"], "output": ["Arzisiz", "Sizga xizmat qilishga tayyormiz!"] },
+			"greeting.hello": { "input": ["salom", "salom, qalaysiz?", "nima gap?"], "output": ["Salom", "Va alaykum assalom!", "Salom"] },
+			"greeting.bye": { "input": ["xayr", "xayr, ko'rishguncha"], "output": ["Xayr", "Xayr, ko'rishguncha!"] },
+			"greeting.question": { "input": ["qalaysiz"], "output": ["Yaxshi, rahmat, sizni qanday yordam bera olishim mumkin?"] },
+			"info.have": { "input": ["menda bor", "mendayam bor"], "output": ["Qani?", "Menda ham bor"] },
+			"info.age": { "input": ["mening yoshim %number%", "men %number% yoshdaman"], "output": ["Ajoyib", "Zo'r men 3.14159265359 yoshdaman"] },
+			"info.name": {
+				"input": ["salom mening ismim %name%", "mening ismim %name%", "men %name%man"],
+				"output": ["salom {{name}} tanishganimdan hursandman", "Salom {{name}} men Lisaman"]
+			},
+			"info.notGetting": { "input": ["kechirasiz men sizni tushunmadim"], "output": ["meni tushunish uchun ancha bilim kerak"] },
+			"emotion.laugh": { "input": ["hahaha"], "output": ["hahaha"] },
+			"answer.yes": { "input": ["ha"], "output": ["hmm"] },
+			"question.yesno": { "input": ["hami", "yo'qmi"], "output": ["Ha", "Yo'q"] },
+			"question.weather": {
+				"input": ["bugun %location% obhavo qandey", "%location%dagi obhavo haqida malumot"],
+				"output": ["bugun {{location}} obhavo {{temprature}} daraja issiq"]
+			},
+			"question.gender": { "input": ["siz qizbolamisiz"], "output": ["Yo'q", "Haqiqatdanmi?"] },
+			"question.name": { "input": ["ismingiz nima?", "ismizni ayting"], "output": ["Men Lisa.", "Men Lisaman. Sizchi?"] },
+			"question.age": { "input": ["yoshingiz nechida?"], "output": ["Men yoshim yo'q."] },
+			"question.know": { "input": ["bilaszmi"], "output": ["Ha, bilaman."] },
+			"question.location": { "input": ["siz qayerdasiz", "qayerda turasz"], "output": ["Hech qayerda", "Hamma joyda"] },
+			"question.skills": {
+				"input": ["Nimalar qilishingiz mumkin?", "Qanday xizmatlarni taklif qilasiz?"],
+				"output": ["Men sizga yordam bera olishim mumkin!", "Men ko'p narsa qilaman."]
+			}
+		},
+		"entity": {
+			"name": { "sultonov": ["sultonov"] },
+			"location": {
+				"urganch": ["urganch", "urganchda", "urgench", "urgenchda"],
+				"tashkent": ["toshkent", "tashkent", "toshkentda", "tashkentda"]
+			}
+		}
+	},
+	"en": {
+		"words": {
+			"None": { "input": [], "output": ["Sorry. I didn't understand"] }
+		},
+		"entity": {
+			"name": { "sultonov": ["sultonov"] }
+		}
+	}
+}
