@@ -1,5 +1,4 @@
 const { NlpManager, Language } = require("node-nlp");
-const { removeEmojis } = require("@nlpjs/emoji");
 const axios = require("axios");
 
 const data = require("./data.json");
@@ -35,12 +34,21 @@ class Lisa {
 		await this.manager.train();
 	}
 
-	async ask(text) {
-		text = removeEmojis(text);
-		const res = await this.manager.process(this.Language.guess(text, ["uz", "en"])[0].alpha2, text);
-		const entities = res.entities;
-		let answer = await this.parseParams(res.answer, entities);
-
+	async sendMessage(conversation) {
+		const entities = [];
+		let finalRes;
+		for (let message of conversation) {
+			if (message.sender == "client") {
+				const res = await this.manager.process(this.Language.guess(message.text, ["uz", "en"])[0].alpha2, message.text);
+				for (let entity of res.entities) {
+					entities.push(entity);
+				}
+				finalRes = res;
+			}
+		}
+		console.log(entities);
+		let answer = await this.parseParams(finalRes.answer, entities);
+		let text = finalRes.utterance;
 		const out = { text, answer, entities };
 		return out;
 	}
@@ -49,26 +57,10 @@ class Lisa {
 	 * @param {string} text
 	 */
 	async parseParams(text, entities) {
-		try {
-			if (text.includes("{{temprature}}")) {
-				let location = "";
-
-				for (let i of entities) {
-					if (i.entity == "location") {
-						location = i.option;
-					}
-				}
-
-				const res = await axios.get(
-					`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=e1a88097de590b5cc679f25d2191933f`
-				);
-				text = text.replaceAll("{{temprature}}", parseInt(res.data.main.temp));
-			}
-
-			return text;
-		} catch {
-			return text;
+		for (let entity of entities) {
+			text = text.replaceAll(`{{${entity.entity}}}`, entity.option);
 		}
+		return text;
 	}
 }
 

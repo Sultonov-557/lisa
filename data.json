@@ -16,10 +16,6 @@
 			"emotion.laugh": { "input": ["hahaha"], "output": ["hahaha"] },
 			"answer.yes": { "input": ["ha"], "output": ["hmm"] },
 			"question.yesno": { "input": ["hami", "yo'qmi"], "output": ["Ha", "Yo'q"] },
-			"question.weather": {
-				"input": ["bugun %location% obhavo qandey", "%location%dagi obhavo haqida malumot"],
-				"output": ["bugun {{location}} obhavo {{temprature}} daraja issiq"]
-			},
 			"question.gender": { "input": ["siz qizbolamisiz"], "output": ["Yo'q", "Haqiqatdanmi?"] },
 			"question.name": { "input": ["ismingiz nima?", "ismizni ayting"], "output": ["Men Lisa.", "Men Lisaman. Sizchi?"] },
 			"question.age": { "input": ["yoshingiz nechida?"], "output": ["Men yoshim yo'q."] },
