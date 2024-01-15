@@ -30,7 +30,7 @@
       "question.yesno": { "input": ["hami", "yo'qmi"], "output": ["Ha", "Yo'q"] },
       "question.gender": { "input": ["siz qizbolamisiz"], "output": ["Yo'q", "Haqiqatdanmi?"] },
       "question.name": {
-        "input": ["ismingiz nima?", "ismizni ayting"],
+        "input": ["ismingiz nima?", "ismizni ayting", "isming nima"],
         "output": ["Men Lisa.", "Men Lisaman. Sizchi?"]
       },
       "question.myname": {
